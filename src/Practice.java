@@ -33,7 +33,8 @@ public class Practice {
      */
     public static String shortestWord(Set<String> words) {
         if (words == null) throw new NullPointerException();
-        // placeholder with words that likely won't exist lol
+        if (words.size() == 0) throw new IllegalArgumentException();
+        // placeholder of a word that likely won't exist lol
         String shortest = "!@#$%^&*()";
         for (String word : words) {
             if (shortest.equals("!@#$%^&*()") || shortest.length() > word.length()) { shortest = word; }
