@@ -35,9 +35,9 @@ public class Practice {
         if (words == null) throw new NullPointerException();
         if (words.size() == 0) throw new IllegalArgumentException();
         // placeholder of a word that likely won't exist lol
-        String shortest = "!@#$%^&*()";
+        String shortest = null;
         for (String word : words) {
-            if (shortest.equals("!@#$%^&*()") || shortest.length() > word.length()) { shortest = word; }
+            if (shortest == null || shortest.length() > word.length()) { shortest = word; }
             else if (shortest.length() == word.length()) {
                 // tiebreaker
                 if (shortest.compareTo(word) >= 0) shortest = word; 
