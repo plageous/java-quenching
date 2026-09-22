@@ -32,7 +32,19 @@ public class Practice {
      * @throws NullPointerException if words is null
      */
     public static String shortestWord(Set<String> words) {
-        return null;
+        if (words == null) throw new NullPointerException();
+        // placeholder with words that likely won't exist lol
+        String shortest = "!@#$%^&*()";
+        for (String word : words) {
+            if (shortest.equals("!@#$%^&*()") || shortest.length() > word.length()) { shortest = word; }
+            else if (shortest.length() == word.length()) {
+                // tiebreaker
+                if (shortest.compareTo(word) >= 0) shortest = word; 
+            }
+            // else do nothing
+        }
+
+        return shortest;
     }
 
     /**
