@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -58,7 +59,14 @@ public class Practice {
      * @throws NullPointerException if ages is null
      */
     public static Set<String> adults(Map<String, Integer> ages) {
-        return null;
+        Set<String> legalAdults = new HashSet<>();
+        for (String adult : ages.keySet()) {
+            if (ages.get(adult) >= 18) {
+                legalAdults.add(adult);
+            }
+        }
+
+        return legalAdults;
     }
 
     /**
@@ -69,7 +77,13 @@ public class Practice {
      * @throws IllegalArgumentException if head is null
      */
     public static int biggestNumber(ListNode<Integer> head) {
-        return 0;
+        int big = head.data;
+        ListNode curr = head.next;
+        while (curr != null) {
+            if (curr.data)
+        }
+
+        return big;
     }
 
     /**
