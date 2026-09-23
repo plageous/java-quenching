@@ -1,8 +1,4 @@
-import java.util.HashSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Practice {
     /**
@@ -163,10 +159,26 @@ public class Practice {
      */
     public static int sumAtLevel(BinaryTreeNode<Integer> root, int level) {
         if (root == null) return 0;
+        List<Integer> levelSums = new ArrayList<>();
+        Queue<BinaryTreeNode<Integer>> queue = new LinkedList<>();
+        queue.add(root);
 
-        
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            int sum = 0;
+            
+            for (int i = 0; i < size; i++) {
+                BinaryTreeNode<Integer> curr = queue.remove();
+                sum += curr.data;
+                if (curr.left != null) queue.add(curr.left);
+                if (curr.right != null) queue.add(curr.right);
+            }
 
-        return 0;
+            levelSums.add(sum);
+        }
+
+        if (level <= 0 || level > levelSums.size()) return 0;
+        return levelSums.get(level - 1);
     }
 
 
@@ -181,6 +193,39 @@ public class Practice {
      * @return true if the sums are equal, false otherwise
      */
     public static boolean sumMatch(BinaryTreeNode<Integer> root, ListNode<Integer> head) {
-        return false;
+        if (root == null && head == null) return true;
+        else {
+            if (root == null) return false;
+            if (head == null) return false;
+        }
+        int treeSum = 0;
+        int listSum = 0;
+
+        // TREE
+        Queue<BinaryTreeNode<Integer>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            int sum = 0;
+            
+            for (int i = 0; i < size; i++) {
+                BinaryTreeNode<Integer> curr = queue.remove();
+                sum += curr.data;
+                if (curr.left != null) queue.add(curr.left);
+                if (curr.right != null) queue.add(curr.right);
+            }
+
+            treeSum += sum;
+        }
+
+        // LIST
+        ListNode<Integer> curr = head;
+        while (curr != null) {
+            listSum += curr.data;
+            curr = curr.next;
+        }
+
+        return listSum == treeSum;
     }
 }
